@@ -1,0 +1,29 @@
+#:schema node_modules/wrangler/config-schema.json
+# 部署到 Cloudflare Workers + Static Assets。
+# `name` 由后端在部署时动态注入（沙箱跑 `wrangler deploy --dry-run --outdir <out>` 时替换占位）。
+name = "vibe-game-2d-template"
+main = ".open-next/worker.js"
+compatibility_date = "2025-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding   = "ASSETS"
+
+# Non-secret runtime vars — DATABASE_URL is injected by platform as a secret_text binding
+# (secrets override [vars] for the same key and cannot coexist with [vars] of same name).
+# The .env file bakes DATABASE_URL into next-env.mjs as a compile-time fallback.
+[vars]
+ADMIN_CODE       = "1995"
+JWT_SECRET       = ""
+BREVO_API_KEY    = ""
+BREVO_FROM_EMAIL = "badrchelabi150995@gmail.com"
+BREVO_FROM_NAME  = "DR"
+HAPPYSEEDS_PROJECT_ID       = "58b319b3c052449ab3664e9db83db24d"
+REACTUS_BASE_URL            = "https://reactus-api.happyseeds.ai"
+AUTH_APP_TRANSACTION_SECRET = ""
+
+# Hyperdrive upgrade path (injected by platform when enabled):
+# [[hyperdrive]]
+# binding = "HYPERDRIVE"
+# id      = "<placeholder>"
