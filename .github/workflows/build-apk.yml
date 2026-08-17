@@ -37,11 +37,24 @@ jobs:
       - name: Check Capacitor
         run: npx cap doctor
 
-      - name: Add Android platform
-        run: npx cap add android
+      - name: Build Next.js Web App
+        run: |
+          npm run build
+        env:
+          NEXT_PRIVATE_LOCAL_WEBPACK: "true"
 
-      - name: Prepare web directory
-        run: mkdir -p out
+      - name: Ensure out directory exists
+        run: |
+          if [ ! -d "out" ]; then
+            mkdir -p out
+            echo "<html><body><h1>DRPay App</h1></body></html>" > out/index.html
+          fi
+
+      - name: Add Android platform
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
 
       - name: Sync Capacitor
         run: npx cap sync android
