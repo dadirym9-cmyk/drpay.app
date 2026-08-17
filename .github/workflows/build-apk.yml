@@ -24,13 +24,15 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21 # ⬅️ تم تعديلها هنا إلى 21
+          java-version: 21
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Install Capacitor Android
-        run: npm install @capacitor/android --save --legacy-peer-deps
+      - name: Install Capacitor Android & Browser plugin
+        run: |
+          npm install @capacitor/android --save --legacy-peer-deps
+          npm install @capacitor/browser --save --legacy-peer-deps
 
       - name: Check Capacitor
         run: npx cap doctor
