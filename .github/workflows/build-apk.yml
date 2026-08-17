@@ -38,6 +38,9 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Prepare web directory
+        run: mkdir -p out
+
       - name: Sync Capacitor
         run: npx cap sync android
 
