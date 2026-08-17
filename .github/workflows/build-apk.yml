@@ -30,7 +30,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Install Capacitor Android
-        run: npm install @capacitor/android --save
+        run: npm install @capacitor/android --save --legacy-peer-deps
 
       - name: Check Capacitor
         run: npx cap doctor
