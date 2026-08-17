@@ -5,8 +5,7 @@ const config: CapacitorConfig = {
   appName: 'DRPay',
   webDir: 'out',
   server: {
-    url: 'https://drpay.online',
-    cleartext: false,
+    cleartext: true,
     allowNavigation: ['www.drpay.online', 'drpay.online', '://google.com']
   }
 };
